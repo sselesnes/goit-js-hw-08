@@ -69,7 +69,16 @@ const onGalleryItemClick = event => {
     event.preventDefault();
     const source = event.target.dataset.source;
     const alt = event.target.alt;
-    basicLightbox.create(`<div class="modal"><img src="${source}" alt="${alt}"/></div>`).show();
+    const lightboxInstance = basicLightbox.create(
+      `<div class="modal"><img src="${source}" alt="${alt}"/></div>`
+    );
+
+    lightboxInstance.show();
+
+    document.addEventListener(
+      "keydown",
+      event => event.code === "Escape" && lightboxInstance.close()
+    );
   }
 };
 
