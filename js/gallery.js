@@ -70,14 +70,15 @@ const onGalleryItemClick = event => {
     const source = event.target.dataset.source;
     const alt = event.target.alt;
     const lightboxInstance = basicLightbox.create(
-      `<div class="modal"><img src="${source}" alt="${alt}"/></div>`
+      `<div class="modal"><button class="modal-close">×</button><img src="${source}" alt="${alt}"/></div>`
     );
-
     lightboxInstance.show();
-
     document.addEventListener(
       "keydown",
-      event => event.code === "Escape" && lightboxInstance.close()
+      event => event.code === "Escape" && lightboxInstance.close(),
+      document
+        .querySelector(`.modal-close`)
+        .addEventListener("click", event => lightboxInstance.close())
     );
   }
 };
