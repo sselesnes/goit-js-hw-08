@@ -83,7 +83,7 @@ const lightboxModalClose = lightboxInstance => {
     event => event.code === "Escape" && lightboxInstance.close(),
     document
       .querySelector(`.modal-close`)
-      .addEventListener("click", event => lightboxInstance.close())
+      .addEventListener("click", () => lightboxInstance.close())
   );
 };
 
