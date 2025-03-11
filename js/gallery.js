@@ -73,14 +73,18 @@ const onGalleryItemClick = event => {
       `<div class="modal"><button class="modal-close">×</button><img src="${source}" alt="${alt}"/></div>`
     );
     lightboxInstance.show();
-    document.addEventListener(
-      "keydown",
-      event => event.code === "Escape" && lightboxInstance.close(),
-      document
-        .querySelector(`.modal-close`)
-        .addEventListener("click", event => lightboxInstance.close())
-    );
+    lightboxModalClose(lightboxInstance);
   }
+};
+
+const lightboxModalClose = lightboxInstance => {
+  document.addEventListener(
+    "keydown",
+    event => event.code === "Escape" && lightboxInstance.close(),
+    document
+      .querySelector(`.modal-close`)
+      .addEventListener("click", event => lightboxInstance.close())
+  );
 };
 
 const gallery = document.querySelector(`.gallery`);
