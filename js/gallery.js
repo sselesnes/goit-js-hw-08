@@ -70,4 +70,13 @@ gallery.innerHTML = createGallery(images);
 
 gallery.addEventListener(`click`, event => {
   event.preventDefault();
+  const source = event.target.dataset.source;
+  const alt = event.target.alt;
+  const instance = basicLightbox.create(`
+    <div class="modal">
+      <img src="${source}" alt="${alt}"/>
+      <h2>${alt}</h2>      
+    </div>  
+  `);
+  instance.show();
 });
