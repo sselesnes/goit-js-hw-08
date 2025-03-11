@@ -73,11 +73,11 @@ const onGalleryItemClick = event => {
       `<div class="modal"><button class="modal-close">×</button><img src="${source}" alt="${alt}"/></div>`
     );
     lightboxInstance.show();
-    lightboxModalClose(lightboxInstance);
+    handleLightboxClose(lightboxInstance);
   }
 };
 
-const lightboxModalClose = lightboxInstance => {
+const handleLightboxClose = lightboxInstance => {
   document.addEventListener(
     "keydown",
     event => event.code === "Escape" && lightboxInstance.close(),
