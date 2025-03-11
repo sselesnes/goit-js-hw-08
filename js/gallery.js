@@ -78,13 +78,13 @@ const onGalleryItemClick = event => {
 };
 
 const handleLightboxClose = lightboxInstance => {
-  document.addEventListener(
-    "keydown",
-    event => event.code === "Escape" && lightboxInstance.close(),
-    document
-      .querySelector(`.modal-close`)
-      .addEventListener("click", () => lightboxInstance.close())
-  );
+  document
+    .querySelector(`.modal-close`)
+    .addEventListener("click", () => lightboxInstance.close()),
+    document.addEventListener(
+      "keydown",
+      event => event.code === "Escape" && lightboxInstance.close()
+    );
 };
 
 const gallery = document.querySelector(`.gallery`);
