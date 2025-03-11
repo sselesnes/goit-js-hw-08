@@ -46,16 +46,7 @@ const images = [
   },
 ];
 
-// <li class="gallery-item">
-//  <a class="gallery-link" href="large-image.jpg">
-//  <img
-//      class="gallery-image"
-//      src="small-image.jpg"
-//      data-source="large-image.jpg"
-//      alt="Image description"
-//    />
-//  </a>
-// </li>
+const gallery = document.querySelector(`.gallery`);
 
 const createGallery = images => {
   return images
@@ -75,4 +66,8 @@ const createGallery = images => {
     .join("");
 };
 
-document.querySelector(`.gallery`).innerHTML = createGallery(images);
+gallery.innerHTML = createGallery(images);
+
+gallery.addEventListener(`click`, event => {
+  event.preventDefault();
+});
