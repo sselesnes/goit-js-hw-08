@@ -46,9 +46,7 @@ const images = [
   },
 ];
 
-const gallery = document.querySelector(`.gallery`);
-
-const createGallery = images => {
+const createGalleryMarkup = images => {
   return images
     .map(
       ({ preview, original, description }) =>
@@ -66,18 +64,15 @@ const createGallery = images => {
     .join("");
 };
 
-gallery.innerHTML = createGallery(images);
-
-gallery.addEventListener(`click`, event => {
+const onGalleryItemClick = event => {
   if (event.target !== event.currentTarget) {
     event.preventDefault();
     const source = event.target.dataset.source;
     const alt = event.target.alt;
-    const instance = basicLightbox.create(`
-    <div class="modal">
-      <img src="${source}" alt="${alt}"/>      
-    </div>  
-  `);
-    instance.show();
+    basicLightbox.create(`<div class="modal"><img src="${source}" alt="${alt}"/></div>`).show();
   }
-});
+};
+
+const gallery = document.querySelector(`.gallery`);
+gallery.innerHTML = createGalleryMarkup(images);
+gallery.addEventListener("click", onGalleryItemClick);

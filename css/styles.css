@@ -17,19 +17,23 @@ ul,
 p {
   margin: 0;
 }
+
 ul {
   list-style: none;
   padding: 0;
 }
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 48px 24px;
 }
+
 .gallery-item {
   height: 300px;
 }
+
 .gallery-image {
   width: 360px;
   height: 300px;
