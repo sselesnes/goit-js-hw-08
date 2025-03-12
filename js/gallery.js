@@ -85,6 +85,10 @@ const handleLightboxClose = lightboxInstance => {
       "keydown",
       event => event.code === "Escape" && lightboxInstance.close()
     );
+  const modalImage = document.querySelector(".modal");
+  modalImage.addEventListener("click", () => {
+    lightboxInstance.close();
+  });
 };
 
 const gallery = document.querySelector(`.gallery`);
