@@ -1,12 +1,10 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 24px auto;
   background-color: #fff;
 }
-
 h1,
 h2,
 h3,
@@ -17,12 +15,10 @@ ul,
 p {
   margin: 0;
 }
-
 ul {
   padding: 0;
   list-style: none;
 }
-
 .gallery {
   max-width: 1126px;
   margin: 0 auto;
@@ -31,12 +27,10 @@ ul {
   justify-content: center;
   gap: 24px 20px;
 }
-
 .gallery-item {
   height: 200px;
   transition: transform 150ms ease-in;
 }
-
 .gallery-item:hover {
   transform: scale(1.04);
   transition: transform 150ms ease-in;
@@ -47,10 +41,9 @@ ul {
   object-fit: cover;
   transition: transform 250ms ease-in;
 }
-
 .modal {
   position: relative;
-  z-index: 99;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-self: center;
@@ -60,12 +53,11 @@ ul {
   border-radius: 4px;
 }
 
-.modal img {
-  max-width: 85vw;
-  max-height: 85vh;
-}
-
 @media (pointer: fine) {
+  .modal img {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
   .modal-close {
     position: absolute;
     top: 4px;
@@ -85,6 +77,10 @@ ul {
 }
 
 @media (pointer: coarse) {
+  .modal img {
+    max-width: 85vw;
+    max-height: 85vh;
+  }
   .modal-close {
     display: none;
   }
