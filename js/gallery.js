@@ -65,7 +65,7 @@ const createGalleryMarkup = images => {
 };
 
 const onGalleryItemClick = event => {
-  if (event.target !== event.currentTarget) {
+  if (event.target.nodeName === "IMG") {
     event.preventDefault();
     const source = event.target.dataset.source;
     const alt = event.target.alt;
@@ -85,10 +85,6 @@ const handleLightboxClose = lightboxInstance => {
       "keydown",
       event => event.code === "Escape" && lightboxInstance.close()
     );
-  const modalImage = document.querySelector(".modal");
-  modalImage.addEventListener("click", () => {
-    lightboxInstance.close();
-  });
 };
 
 const gallery = document.querySelector(`.gallery`);
