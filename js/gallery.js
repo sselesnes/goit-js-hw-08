@@ -69,28 +69,32 @@ const onGalleryItemClick = event => {
     event.preventDefault();
     const source = event.target.dataset.source;
     const alt = event.target.alt;
+    let keydownHandler;
+
     const lightboxInstance = basicLightbox.create(
-      `<div class="modal"><button class="modal-close">×</button><img src="${source}" alt="${alt}"/></div>`
+      `<div class="modal"><button class="modal-close">×</button><img src="${source}" alt="${alt}"/></div>`,
+      {
+        onShow: instance => {
+          instance
+            .element()
+            .querySelector(`.modal-close`)
+            .addEventListener("click", () => {
+              instance.close();
+            });
+
+          keydownHandler = event => {
+            if (event.code === "Escape") instance.close();
+          };
+
+          document.body.addEventListener("keydown", keydownHandler);
+        },
+        onClose: instance => {
+          document.body.removeEventListener("keydown", keydownHandler);
+        },
+      }
     );
     lightboxInstance.show();
-    handleLightboxClose(lightboxInstance);
   }
-};
-
-const handleLightboxClose = lightboxInstance => {
-  const handleEscapeKeydown = event => {
-    if (event.code === "Escape") {
-      lightboxInstance.close();
-      document.removeEventListener("keydown", handleEscapeKeydown);
-    }
-  };
-
-  document.querySelector(`.modal-close`).addEventListener("click", () => {
-    lightboxInstance.close();
-    document.removeEventListener("keydown", handleEscapeKeydown);
-  });
-
-  document.addEventListener("keydown", handleEscapeKeydown);
 };
 
 const gallery = document.querySelector(`.gallery`);
