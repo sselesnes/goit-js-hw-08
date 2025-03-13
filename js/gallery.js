@@ -71,29 +71,30 @@ const onGalleryItemClick = event => {
     const alt = event.target.alt;
     let keydownHandler;
 
-    const lightboxInstance = basicLightbox.create(
-      `<div class="modal"><button class="modal-close">×</button><img src="${source}" alt="${alt}"/></div>`,
-      {
-        onShow: instance => {
-          instance
-            .element()
-            .querySelector(`.modal-close`)
-            .addEventListener("click", () => {
-              instance.close();
-            });
+    basicLightbox
+      .create(
+        `<div class="modal"><button class="modal-close">×</button><img src="${source}" alt="${alt}"/></div>`,
+        {
+          onShow: instance => {
+            instance
+              .element()
+              .querySelector(`.modal-close`)
+              .addEventListener("click", () => {
+                instance.close();
+              });
 
-          keydownHandler = event => {
-            if (event.code === "Escape") instance.close();
-          };
+            keydownHandler = event => {
+              if (event.code === "Escape") instance.close();
+            };
 
-          document.body.addEventListener("keydown", keydownHandler);
-        },
-        onClose: instance => {
-          document.body.removeEventListener("keydown", keydownHandler);
-        },
-      }
-    );
-    lightboxInstance.show();
+            document.body.addEventListener("keydown", keydownHandler);
+          },
+          onClose: instance => {
+            document.body.removeEventListener("keydown", keydownHandler);
+          },
+        }
+      )
+      .show();
   }
 };
 
