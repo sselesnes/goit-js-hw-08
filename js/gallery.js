@@ -78,13 +78,19 @@ const onGalleryItemClick = event => {
 };
 
 const handleLightboxClose = lightboxInstance => {
-  document
-    .querySelector(`.modal-close`)
-    .addEventListener("click", () => lightboxInstance.close()),
-    document.addEventListener(
-      "keydown",
-      event => event.code === "Escape" && lightboxInstance.close()
-    );
+  const handleEscapeKeydown = event => {
+    if (event.code === "Escape") {
+      lightboxInstance.close();
+      document.removeEventListener("keydown", handleEscapeKeydown);
+    }
+  };
+
+  document.querySelector(`.modal-close`).addEventListener("click", () => {
+    lightboxInstance.close();
+    document.removeEventListener("keydown", handleEscapeKeydown);
+  });
+
+  document.addEventListener("keydown", handleEscapeKeydown);
 };
 
 const gallery = document.querySelector(`.gallery`);
